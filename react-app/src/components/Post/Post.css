@@ -130,7 +130,7 @@
 }
 
 .post-modal-cancel {
-    border-radius: 0px 0px 12px 12px;
+    border-radius: 12px;
 }
 
 .post-modal-button {
