@@ -92,7 +92,10 @@ function Post(propPostId) {
 
     if (editButtonDisplay) {
         editButton = (
-            <button className="post-button edit-description-button" onClick={() => setEditDisplay(true)}>
+            <button
+                className="post-button post-modal-button edit-description-button"
+                onClick={() => setEditDisplay(true)}
+            >
                 Edit{" "}
             </button>
         );
@@ -101,7 +104,9 @@ function Post(propPostId) {
     let deleteContent = null;
 
     if (deleteDisplay) {
-        deleteContent = <PostDelete className="post-button delete-post-button" post={post[postId]} />;
+        deleteContent = (
+            <PostDelete className="post-button post-modal-button delete-post-button" post={post[postId]} />
+        );
     }
 
     return (
@@ -111,9 +116,21 @@ function Post(propPostId) {
                     <div className="post-username-container">
                         <div className="post-username-name">{username}</div>
                         <i class="fa-solid fa-ellipsis fa-xl post-username-modal" onClick={openModal}></i>
-                        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} ariaHideApp={false}>
+                        <Modal
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            ariaHideApp={false}
+                            className="post-modal"
+                            overlayClassName="post-modal__overlay"
+                        >
                             {editButton}
                             {deleteContent}
+                            <button
+                                className="post-button post-modal-button post-modal-cancel"
+                                onClick={closeModal}
+                            >
+                                Cancel
+                            </button>
                         </Modal>
                     </div>
                     <div className="post-image__container">
