@@ -50,6 +50,25 @@
     padding: 8px;
 }
 
+.post-modal {
+    width: 400px;
+    /* height: 500px; */
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    position: relative;
+    border-radius: 12px;
+}
+
+.post-modal__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .post-image__container {
     height: 500px;
     width: 500px;
@@ -101,8 +120,28 @@
 
 .post-button {
     position: relative;
-    z-index: 3;
-    margin-left: 450px;
+    /* z-index: 3; */
     font-family: "BioRhyme", sans-serif;
+    /* border-radius: 12px; */
+}
+
+.edit-description-button {
+    border-radius: 12px 12px 0px 0px;
+}
+
+.post-modal-cancel {
     border-radius: 12px;
+}
+
+.post-modal-button {
+    background-color: #fff;
+    padding: 4px 8px;
+    width: 400px;
+    height: 48px;
+    border: none;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.post-modal-button:hover {
+    background-color: #dbdbdb;
 }

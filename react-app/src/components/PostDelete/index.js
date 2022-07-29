@@ -5,23 +5,23 @@ import { erasePost } from "../../store/post";
 import "./PostDelete.css";
 
 const PostDeleteButton = ({ post }) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    await dispatch(erasePost(post));
-    history.push("/posts/1");
-    history.push("/");
-  };
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(erasePost(post));
+        history.push("/posts/1");
+        history.push("/");
+    };
 
-  return (
-    <form onSubmit={handleDelete}>
-      <button className="post-button delete-post-button" type="submit">
-        Delete
-      </button>
-    </form>
-  );
+    return (
+        <form onSubmit={handleDelete}>
+            <button className="post-button post-modal-button delete-post-button" type="submit">
+                Delete
+            </button>
+        </form>
+    );
 };
 
 export default PostDeleteButton;
