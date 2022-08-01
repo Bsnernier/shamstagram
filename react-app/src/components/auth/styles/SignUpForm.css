@@ -14,13 +14,14 @@
     left: -50%;
     bottom: -50%;
     float: left;
-    background: #c24150;
+    background: #fff;
     padding: 25px;
     box-sizing: border-box;
     font-family: "BioRhyme", serif;
-    border-radius: 20px;
-    color: #0f2840;
-    box-shadow: 3px 3px 3px #0f2840;
+    /* border-radius: 20px; */
+    color: #262626;
+    border: 1px solid #dbdbdb;
+    /* box-shadow: 3px 3px 3px #0f2840; */
 }
 
 .input-label {
@@ -28,7 +29,7 @@
     position: relative;
     left: 5px;
     top: 17px;
-    color: rgb(0, 0, 0, 0.75);
+    color: #8e8e8e;
 }
 
 input[type="text"] {
@@ -43,22 +44,26 @@ input[type="password"] {
 
 .signup_input {
     width: 185px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     border-style: none;
-    box-shadow: 1px 1px 2px #0f2840;
+    border: 1px solid #dbdbdb;
+    background-color: #fafafa;
+    color: #000000;
+    /* box-shadow: 1px 1px 2px #0f2840; */
     font-family: "BioRhyme", sans-serif;
 }
 
 .signup_button {
     position: relative;
     z-index: 3;
-    margin-top: 10px;
+    margin-top: 30px;
     font-family: "BioRhyme", sans-serif;
-    border-radius: 12px;
-    background-color: #0f2840;
+    border-radius: 3px;
+    background-color: #b2dffc;
+    /* box-shadow: 1px 1px 1px #c24150; */
+    color: #fff;
     border-style: none;
-    box-shadow: 1px 1px 1px #c24150;
-    color: #c24150;
+    width: 200px;
 }
 
 .login_button {
@@ -68,9 +73,9 @@ input[type="password"] {
     font-family: "BioRhyme", sans-serif;
     border-radius: 12px;
     border-style: none;
-    background-color: #4a374e;
-    box-shadow: 1px 1px 1px #4a374e;
-    color: #f0d3cd;
+    background-color: #fff;
+    /* box-shadow: 1px 1px 1px #4a374e; */
+    color: #0095f6;
 }
 
 .demo_button {
@@ -88,17 +93,23 @@ input[type="password"] {
 
 .input-container {
     width: 200px;
+    height: 50px;
 }
 
 .signup-errors {
     font-weight: bold;
-    color: #0f2840;
+    color: #ed4956;
     font-family: "Oxygen", sans-serif;
 }
 
-/* @media screen and (max-height: 700px),
-screen and (min-width: 694px) {
-    .signup-form {
-        bottom: -75%;
-    }
-} */
+input:focus {
+    outline: #a8a8a8;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
