@@ -31,7 +31,6 @@ function App() {
 
     return (
         <BrowserRouter>
-            <LogoBar />
             {/* <NavBar /> */}
             <Switch>
                 <Route path="/login" exact={true}>
@@ -40,24 +39,27 @@ function App() {
                 <Route path="/sign-up" exact={true}>
                     <SignUpForm />
                 </Route>
-                <ProtectedRoute path="/post" exact={true}>
-                    <PostForm />
-                </ProtectedRoute>
-                <ProtectedRoute path="/posts/:postId" exact={true}>
-                    <Post />
-                </ProtectedRoute>
-                <ProtectedRoute path="/images" exact={true}>
-                    <Image />
-                </ProtectedRoute>
-                <ProtectedRoute path="/users" exact={true}>
-                    <UsersList />
-                </ProtectedRoute>
-                <ProtectedRoute path="/users/:userId" exact={true}>
-                    <User />
-                </ProtectedRoute>
-                <ProtectedRoute path="/" exact={true}>
-                    <PostFeed />
-                </ProtectedRoute>
+                <div>
+                    <LogoBar />
+                    <ProtectedRoute path="/post" exact={true}>
+                        <PostForm />
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/posts/:postId" exact={true}>
+                        <Post />
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/images" exact={true}>
+                        <Image />
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/users" exact={true}>
+                        <UsersList />
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/users/:userId" exact={true}>
+                        <User />
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/" exact={true}>
+                        <PostFeed />
+                    </ProtectedRoute>
+                </div>
             </Switch>
         </BrowserRouter>
     );
