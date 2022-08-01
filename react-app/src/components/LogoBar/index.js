@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Modal from "react-modal";
 import LogoutButton from "../auth/LogoutButton";
 import logo from "./sham.png";
 import "./LogoBar.css";
 
 const LogoBar = () => {
-    const [modalIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
+    function toggleMenu() {
+        const menuToToggle = document.querySelector(".profile_dropdown");
+        menuToToggle.classList.toggle("active");
     }
 
     return (
@@ -33,19 +27,17 @@ const LogoBar = () => {
                     </NavLink>
                 </li>
                 <li className="link-container__profile">
-                    <button onClick={openModal} className="navbar-profile">
+                    <button onClick={toggleMenu} className="navbar-profile">
                         <i class="fa-regular fa-user fa-xl navbar-image"></i>
                     </button>
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        className="navbar-modal"
-                        overlayClassName="navbar-modal__overlay"
-                        parentSelector={() => document.querySelector(".navbar-profile")}
-                        ariaHideApp={false}
-                    >
-                        <LogoutButton className="navbar-modal__button" />
-                    </Modal>
+                    <div className="profile_dropdown">
+                        {" "}
+                        <div className="dropdown_button_div">
+                            <i class="fa-solid fa-circle-user fa-xl"></i>
+                            <button className="profile_dropdown__button">Profile</button>
+                        </div>
+                        <LogoutButton />
+                    </div>
                 </li>
             </ul>
         </div>
