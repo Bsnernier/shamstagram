@@ -100,7 +100,7 @@ a:visited {
 
 /* modal stuff */
 
-.navbar-modal {
+/* .navbar-modal {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -128,7 +128,7 @@ a:visited {
     box-shadow: 1px 1px 1px #c24150;
     color: #c24150;
     border-style: none;
-}
+} */
 
 .link-container__profile {
     position: relative;
