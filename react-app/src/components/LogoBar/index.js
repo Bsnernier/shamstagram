@@ -44,7 +44,9 @@ const LogoBar = (ref) => {
     return (
         <div className="logo-container__container">
             <div className="logo-container">
-                <img className="logobar-image" src={logo} alt="logo" />
+                <NavLink to="/" exact={true} activeClassName="active">
+                    <img className="logobar-image" src={logo} alt="logo" />
+                </NavLink>
             </div>
             <ul className="nav_element">
                 <li className="link-container">
