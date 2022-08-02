@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
@@ -15,6 +15,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 
 function App() {
+    const reff = useRef();
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
@@ -31,7 +32,6 @@ function App() {
 
     return (
         <BrowserRouter>
-            {/* <NavBar /> */}
             <Switch>
                 <Route path="/login" exact={true}>
                     <LoginForm />
@@ -39,7 +39,7 @@ function App() {
                 <Route path="/sign-up" exact={true}>
                     <SignUpForm />
                 </Route>
-                <div>
+                <div ref={reff}>
                     <LogoBar />
                     <ProtectedRoute path="/post" exact={true}>
                         <PostForm />

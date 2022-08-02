@@ -1,7 +1,5 @@
 .edit-submit-button {
     position: relative;
-    /* bottom: 90px;
-    right: 55px; */
     word-wrap: break-word;
     background-color: #dd9183;
     box-shadow: 2px 2px 2px #c24150;
@@ -18,11 +16,9 @@
     left: 25px;
     box-sizing: border-box;
     background-color: white;
-    /* border-top: 1px ridge #CC757C; */
     border: 1px groove #cc757c;
     box-shadow: 3px 3px 3px #cc757c;
     border-radius: 7px;
-    /* border: 5px solid #CC757C; */
     font-family: "Fjalla One", sans-serif;
     color: #4a374e;
     bottom: 45px;

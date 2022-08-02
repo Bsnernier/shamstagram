@@ -81,7 +81,6 @@ a:visited {
 
 .navbar-profile {
     background-color: #fff;
-    /* padding: 0px 10px; */
     border: none;
     color: black;
     text-align: center;
@@ -103,11 +102,9 @@ a:visited {
 
 .navbar-modal {
     width: 400px;
-    /* height: 500px; */
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
     background-color: white;
     position: relative;
-    /* top: 5px; */
     border-radius: 12px;
 }
 
@@ -118,7 +115,6 @@ a:visited {
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
-    /* display: flex; */
     z-index: 100;
 }
 
@@ -127,7 +123,6 @@ a:visited {
     align-items: center;
     font-family: "BioRhyme", sans-serif;
     background-color: #fff;
-    /* box-shadow: 1px 1px 1px #c24150; */
     color: #262626;
     border-style: none;
     width: 230px;
@@ -137,7 +132,6 @@ a:visited {
     display: flex;
     font-family: "BioRhyme", sans-serif;
     background-color: #fff;
-    /* box-shadow: 1px 1px 1px #c24150; */
     padding: 8px 16px;
     color: #262626;
     border-style: none;

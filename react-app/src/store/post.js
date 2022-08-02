@@ -33,8 +33,6 @@ export const createPost = (user, description, image) => async (dispatch) => {
         body: formData,
     });
 
-    console.log(res.ok, "res.ok");
-
     if (res.ok) {
         const imageData = await res.json();
         new_post = {
