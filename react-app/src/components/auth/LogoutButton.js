@@ -9,7 +9,7 @@ const LogoutButton = () => {
     };
 
     return (
-        <button className="profile_dropdown__logout" onClick={onLogout}>
+        <button id="drop4" className="profile_dropdown__logout" onClick={onLogout}>
             Logout
         </button>
     );

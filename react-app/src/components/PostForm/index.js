@@ -16,7 +16,6 @@ const PostForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await dispatch(createPost(user, description, image));
-        console.log("PostForm res.data", res.data);
         if (res.data === undefined) {
             setErrors(["You must enter an image format, jpg, jpeg, png, gif"]);
             return;
