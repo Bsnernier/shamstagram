@@ -35,6 +35,7 @@ const PostForm = () => {
 
     return (
         <div className="create-post-container">
+            <div className="create-post-title">Create new post</div>
             <form className="create-post-form-container" onSubmit={handleSubmit}>
                 {errors.map((error, ind) => (
                     <div className="login-errors" key={ind}>

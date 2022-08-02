@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import PostForm from "../PostForm";
 import logo from "./sham.png";
 import "./LogoBar.css";
 
 const LogoBar = (ref) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    function toggleModal() {
+        if (modalOpen) {
+            setModalOpen(false);
+        } else {
+            setModalOpen(true);
+        }
+    }
 
     function toggleMenu() {
         const menuToToggle = document.querySelector(".profile_dropdown");
@@ -55,9 +66,9 @@ const LogoBar = (ref) => {
                     </NavLink>
                 </li>
                 <li className="link-container">
-                    <NavLink to="/post" exact={true} activeClassName="active">
-                        <i class="fa-regular fa-square-plus fa-xl navbar-image"></i>
-                    </NavLink>
+                    {/* <NavLink to="/post" exact={true} activeClassName="active"> */}
+                    <i onClick={toggleModal} class="fa-regular fa-square-plus fa-xl navbar-image"></i>
+                    {/* </NavLink> */}
                 </li>
                 <li className="link-container__profile">
                     <button onClick={toggleMenu} className="navbar-profile">
@@ -75,6 +86,15 @@ const LogoBar = (ref) => {
                     </div>
                 </li>
             </ul>
+            <Modal
+                isOpen={modalOpen}
+                onRequestClose={toggleModal}
+                ariaHideApp={false}
+                className="create-post-modal"
+                overlayClassName="create-post-modal__overlay"
+            >
+                <PostForm />
+            </Modal>
         </div>
     );
 };
