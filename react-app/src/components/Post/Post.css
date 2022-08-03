@@ -85,10 +85,11 @@
     background-color: #fff;
     border: 1px solid #dbdbdb;
     border-top: 0;
-    border-radius: 0px 0px 7px 7px;
+    border-bottom: 0;
+    /* border-radius: 0px 0px 7px 7px; */
     font-family: "Fjalla One", sans-serif;
     color: #262626;
-    padding-bottom: 30px;
+    padding-bottom: 12px;
     word-wrap: break-word;
 }
 

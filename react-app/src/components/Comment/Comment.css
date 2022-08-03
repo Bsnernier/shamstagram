@@ -1,0 +1,42 @@
+.comment-form {
+    width: 500px;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    border-radius: 0px 0px 7px 7px;
+    background-color: #fff;
+    color: #262626;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comment-form input[type="text"] {
+    background: none;
+    border: 0;
+    padding: 12px 12px 0px 12px;
+    margin: 0;
+}
+
+.comment-form-noninput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.charcounter_text {
+    color: #dbdbdb;
+    padding-left: 12px;
+}
+
+.comment-submit-button {
+    position: relative;
+    font-family: "BioRhyme", sans-serif;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: none;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    background-color: #fff;
+    color: #0095f6;
+    margin-top: 10px;
+}
