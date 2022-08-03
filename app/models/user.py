@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
 
     posts = relationship("Post", back_populates="user")
     likes = relationship("Like", back_populates="user")
+    comments = relationship("Comment", back_populates="user")
 
 
     @property
