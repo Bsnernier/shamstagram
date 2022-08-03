@@ -6,6 +6,7 @@ import { getOnePost } from "../../store/post";
 import { createLike, getOneLike, deleteOneLike } from "../../store/like";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
+import Comment from "../Comment";
 import "./Post.css";
 
 function Post(propPostId) {
@@ -99,6 +100,15 @@ function Post(propPostId) {
                 Edit{" "}
             </button>
         );
+    } else {
+        editButton = (
+            <button
+                className="post-button post-modal-button edit-description-button"
+                onClick={() => setEditDisplay(true)}
+            >
+                Follow{" "}
+            </button>
+        );
     }
 
     let deleteContent = null;
@@ -143,6 +153,7 @@ function Post(propPostId) {
                     </div>
 
                     {editContent}
+                    <Comment />
                 </div>
             </div>
         </>
