@@ -7,13 +7,10 @@ const addComment = (comment) => ({
 
 export const createComment = (user, text, post) => async (dispatch) => {
     let formData = new FormData();
-    let new_comment = {
-        postId: post.id,
-        userId: user.id,
-        text,
-    };
 
-    formData.append("new_comment", new_comment);
+    formData.append("postId", post.id);
+    formData.append("userId", user.id);
+    formData.append("text", text);
 
     const commentRes = await fetch("/api/comments/", {
         method: "POST",
