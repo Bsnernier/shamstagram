@@ -35,14 +35,14 @@ def new_comment():
             }
     return comment
 
-# @post_routes.route('/')
-# @login_required
-# def get_all_posts():
-#     posts = db.session.query(Post).join(User, Image).all()
+@comment_routes.route('/')
+@login_required
+def get_all_comments():
+    comments = db.session.query(Comment).join(Post, User).all()
 
-#     postDict = {post.id: post.to_dict() for post in posts}
+    commentDict = {comment.id: comment.to_dict() for comment in comments}
 
-#     return postDict
+    return commentDict
 
 # @post_routes.route('/<int:pageId>')
 # @login_required
