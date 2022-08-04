@@ -1,8 +1,14 @@
 const ADD_COMMENT = "comments/ADD_COMMENT";
+const GET_COMMENTS = "comments/GET_COMMENTS";
 
 const addComment = (comment) => ({
     type: ADD_COMMENT,
     payload: comment,
+});
+
+const getComments = (comments) => ({
+    type: GET_COMMENTS,
+    comments,
 });
 
 export const createComment = (user, text, post) => async (dispatch) => {
@@ -31,6 +37,15 @@ export const createComment = (user, text, post) => async (dispatch) => {
     }
 };
 
+export const getAllPosts = () => async (dispatch) => {
+    const res = await fetch("/api/comments");
+
+    if (res.ok) {
+        const comments = await res.json();
+        dispatch(getComments(comments));
+    }
+};
+
 const initialState = {
     comment: {},
 };
@@ -39,6 +54,8 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_COMMENT:
             return { comments: action.payload };
+        case GET_COMMENTS:
+            return action.comments;
         default:
             return state;
     }
