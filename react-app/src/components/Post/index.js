@@ -153,7 +153,7 @@ function Post(propPostId) {
                     </div>
 
                     {editContent}
-                    <Comment />
+                    <Comment user={user} post={post[postId]} />
                 </div>
             </div>
         </>

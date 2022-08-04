@@ -12,12 +12,16 @@ comment_routes = Blueprint('comments', __name__)
 def new_comment():
     form = CommentForm()
 
-    comment_data = json.loads(request.form["new_comment"])
+    post_data = request.form["postId"]
+    user_data = request.form["userId"]
+    text_data = request.form["text"]
+
+    print("comment_data", post_data, ",", user_data, ",", text_data)
 
     comment = Comment(
-        postId=comment_data["postId"],
-        userId=comment_data["userId"],
-        text=comment_data["text"]
+        postId=post_data,
+        userId=user_data,
+        text=text_data
     )
     db.session.add(comment)
     db.session.flush()
