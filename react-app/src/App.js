@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import PostForm from "./components/PostForm";
-import NavBar from "./components/NavBar";
 import LogoBar from "./components/LogoBar";
 import Image from "./components/Image";
 import Post from "./components/Post";

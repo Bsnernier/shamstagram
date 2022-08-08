@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 import json
 from flask_login import login_required, current_user
+from sqlalchemy import desc
 from app.models import User, Post, Comment, db
 from ..forms import CommentForm
 
@@ -38,7 +39,7 @@ def new_comment():
 @comment_routes.route('/<int:postId>')
 @login_required
 def get_all_comments(postId):
-    comments = db.session.query(Comment).filter_by(postId = postId).join(Post, User).all()
+    comments = db.session.query(Comment).filter_by(postId = postId).order_by(Comment.id.desc()).all()
 
     commentDict = {comment.id: comment.to_dict() for comment in comments}
 
