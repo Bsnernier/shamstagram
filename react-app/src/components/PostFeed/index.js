@@ -5,30 +5,30 @@ import Post from "../Post";
 import "./PostFeed.css";
 
 function PostFeed() {
-  const dispatch = useDispatch();
-  let list = [];
+    const dispatch = useDispatch();
+    let list = [];
 
-  useEffect(() => {
-    dispatch(getAllPosts());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(getAllPosts());
+    }, [dispatch]);
 
-  const posts = useSelector((state) => state.post);
+    const posts = useSelector((state) => state.post);
 
-  for (let key in posts) {
-    if (key !== "post") {
-      list.push(key);
+    for (let key in posts) {
+        if (key !== "post") {
+            list.push(key);
+        }
     }
-  }
 
-  return (
-    <div className="all-post-container__container">
-      <div className="all-post-container">
-        {list.map((post) => (
-          <Post postId={post} key={post} />
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="all-post-container__container">
+            <div className="all-post-container">
+                {list.map((post) => (
+                    <Post postId={post} key={post} />
+                ))}
+            </div>
+        </div>
+    );
 }
 
 export default PostFeed;

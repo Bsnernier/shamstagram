@@ -32,13 +32,16 @@
     border-radius: 7px;
     border-radius: 7px 7px 0px 0px;
     padding: 10px;
-    font-family: "Fjalla One", sans-serif;
     margin-top: 50px;
     background-color: #ffffff;
 }
 
 .post-username-modal {
     padding: 8px;
+}
+
+.post-username-name {
+    font-family: "Fjalla One", sans-serif;
 }
 
 .post-modal {
@@ -126,4 +129,36 @@
 
 .post-modal-button:hover {
     background-color: #dbdbdb;
+}
+.post-comment-container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    border-top: 0;
+    border-bottom: 0;
+    background-color: #fff;
+}
+
+.post-comment-info {
+    width: 500px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 12px;
+    padding-bottom: 4px;
+}
+
+.comment-username {
+    font-family: "Fjalla One", sans-serif;
+    /* padding-left: 12px; */
+    /* padding-top: 2px; */
+}
+
+.comment-text {
+    padding-left: 8px;
 }
