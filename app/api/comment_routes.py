@@ -35,10 +35,10 @@ def new_comment():
             }
     return comment
 
-@comment_routes.route('/')
+@comment_routes.route('/<int:postId>')
 @login_required
-def get_all_comments():
-    comments = db.session.query(Comment).join(Post, User).all()
+def get_all_comments(postId):
+    comments = db.session.query(Comment).filter_by(postId = postId).join(Post, User).all()
 
     commentDict = {comment.id: comment.to_dict() for comment in comments}
 

@@ -37,13 +37,16 @@ export const createComment = (user, text, post) => async (dispatch) => {
     }
 };
 
-export const getAllPosts = () => async (dispatch) => {
-    const res = await fetch("/api/comments");
+export const getAllComments = (postId) => async (dispatch) => {
+    const res = await fetch(`/api/comments/${postId}`);
 
+    let comments;
     if (res.ok) {
-        const comments = await res.json();
+        comments = await res.json();
         dispatch(getComments(comments));
     }
+
+    return comments;
 };
 
 const initialState = {
