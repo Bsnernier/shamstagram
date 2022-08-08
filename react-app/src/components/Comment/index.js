@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createComment, getAllComments } from "../../store/comment";
 import "./Comment.css";
 
@@ -9,13 +9,18 @@ function Comment({ user, post }) {
     const [comments, setComments] = useState([]);
     let commentList = [];
 
-    useEffect(async () => {
-        let dispatchedComments = await dispatch(getAllComments(post.id));
+    useEffect(() => {
+        async function fetchData() {
+            let dispatchedComments = await dispatch(getAllComments(post.id));
+            console.log(dispatchedComments);
 
-        Object.keys(dispatchedComments).forEach((key) => {
-            commentList.push(dispatchedComments[key]);
-        });
-        setComments(commentList);
+            Object.keys(dispatchedComments).forEach((key) => {
+                console.log(key);
+                commentList.unshift(dispatchedComments[key]);
+            });
+            setComments(commentList);
+        }
+        fetchData();
     }, [dispatch, text]);
 
     const updateText = (e) => {
@@ -33,9 +38,10 @@ function Comment({ user, post }) {
         <div>
             <div className="post-comment-container">
                 {comments.map((comment) => (
-                    <div className="post-comment-info">
+                    <div className="post-comment-info" key={comment.id}>
                         <div className="comment-username">{comment.username}</div>
                         <div className="comment-text">{comment.text}</div>
+                        <div>{comment.id}</div>
                     </div>
                 ))}
             </div>

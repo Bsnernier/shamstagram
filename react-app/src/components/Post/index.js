@@ -39,13 +39,16 @@ function Post(propPostId) {
         }
     }, [history, post, postId]);
 
-    useEffect(async () => {
-        dispatch(getOnePost(postId));
-        let res = await dispatch(getOneLike(user, postId));
-        if (res) {
-            setLikedId(res);
-            setLiked(true);
+    useEffect(() => {
+        async function fetchData() {
+            dispatch(getOnePost(postId));
+            let res = await dispatch(getOneLike(user, postId));
+            if (res) {
+                setLikedId(res);
+                setLiked(true);
+            }
         }
+        fetchData();
     }, [dispatch, postId, liked]);
 
     useEffect(() => {
