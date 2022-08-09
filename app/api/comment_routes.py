@@ -17,8 +17,6 @@ def new_comment():
     user_data = request.form["userId"]
     text_data = request.form["text"]
 
-    print("comment_data", post_data, ",", user_data, ",", text_data)
-
     comment = Comment(
         postId=post_data,
         userId=user_data,
@@ -45,24 +43,16 @@ def get_all_comments(postId):
 
     return commentDict
 
-# @post_routes.route('/<int:pageId>')
-# @login_required
-# def get_post(pageId):
-#     posts = db.session.query(Post).join(User, Image).all()
-#     postDict = {post.id: post.to_dict() for post in posts}
-#     return postDict
+@comment_routes.route('/<int:id>/delete', methods=["POST"])
+@login_required
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    if current_user.id == comment.userId:
+        db.session.delete(comment)
+        db.session.commit()
+        return {'Success': id}
 
-
-# @post_routes.route('/<int:id>/delete', methods=["POST"])
-# @login_required
-# def delete_post(id):
-#     post = Post.query.get(id)
-#     if current_user.id == post.userId:
-#         db.session.delete(post)
-#         db.session.commit()
-#         return {'Success': id}
-
-#     return {'Fail': "This is not your post"}
+    return {'Fail': "This is not your post"}
 
 # @post_routes.route('/<int:id>/edit', methods=["POST"])
 # @login_required
