@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createComment, getAllComments } from "../../store/comment";
+import CommentSolo from "../CommentSolo";
 import "./Comment.css";
 
 function Comment({ user, post }) {
+    let commentList = [];
     const dispatch = useDispatch();
     const [text, setText] = useState("");
-    const [comments, setComments] = useState([]);
-    let commentList = [];
+    const [comments, setComments] = useState([...commentList]);
+    const [refresh, setRefresh] = useState(false);
+
+    const test = useSelector((state) => state);
 
     useEffect(() => {
         async function fetchData() {
             let dispatchedComments = await dispatch(getAllComments(post.id));
-            console.log(dispatchedComments);
 
             Object.keys(dispatchedComments).forEach((key) => {
-                console.log(key);
                 commentList.unshift(dispatchedComments[key]);
             });
             setComments(commentList);
         }
         fetchData();
-    }, [dispatch, text]);
+        test.comments = commentList;
+    }, [dispatch, CommentSolo]);
 
     const updateText = (e) => {
         const currText = e.target.value;
@@ -32,17 +35,14 @@ function Comment({ user, post }) {
         e.preventDefault();
         await dispatch(createComment(user, text, post));
         setText("");
+        setRefresh(true);
     };
 
     return (
         <div>
             <div className="post-comment-container">
                 {comments.map((comment) => (
-                    <div className="post-comment-info" key={comment.id}>
-                        <div className="comment-username">{comment.username}</div>
-                        <div className="comment-text">{comment.text}</div>
-                        <div>{comment.id}</div>
-                    </div>
+                    <CommentSolo user={user} post={post} comment={comment} />
                 ))}
             </div>
             <form className="comment-form" onSubmit={handleSubmit}>
