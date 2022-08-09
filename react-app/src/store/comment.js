@@ -1,6 +1,7 @@
 const ADD_COMMENT = "comments/ADD_COMMENT";
 const GET_COMMENTS = "comments/GET_COMMENTS";
 const DELETE_COMMENT = "comments/DELETE_COMMENT";
+const EDIT_COMMENT = "comments/EDIT_COMMENT";
 
 const addComment = (comment) => ({
     type: ADD_COMMENT,
@@ -14,6 +15,11 @@ const getComments = (comment) => ({
 
 const deleteComment = (comment) => ({
     type: DELETE_COMMENT,
+    payload: comment,
+});
+
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
     payload: comment,
 });
 
@@ -72,6 +78,30 @@ export const deleteOneComment = (commentId) => async (dispatch) => {
     }
 };
 
+export const editOneComment = (commentId, text) => async (dispatch) => {
+    let formData = new FormData();
+    formData.append("commentId", commentId);
+    formData.append("text", text);
+
+    const res = await fetch(`/api/comments/${commentId}/edit`, {
+        method: "POST",
+        body: formData,
+    });
+
+    if (res.ok) {
+        await res.json();
+        dispatch(editComment(text));
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
 const initialState = {
     comment: {},
 };
@@ -88,6 +118,8 @@ export default function reducer(state = initialState, action) {
                 return state;
             }
             break;
+        case EDIT_COMMENT:
+            return action.payload;
         default:
             return state;
     }

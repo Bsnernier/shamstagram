@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { createComment, getAllComments, deleteOneComment } from "../../store/comment";
+import CommentEdit from "../CommentEdit";
 import "./CommentSolo.css";
 
 function CommentSolo(props) {
@@ -12,6 +14,7 @@ function CommentSolo(props) {
     const [comText, setComText] = useState(props.comment.text);
     const [commentDropdownDisplay, setCommentDropdownDisplay] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [editIsOpen, setEditIsOpen] = useState(false);
     let commentDropdownButton = null;
 
     useEffect(() => {
@@ -71,13 +74,21 @@ function CommentSolo(props) {
         );
     }
 
+    function openEditModal() {
+        setEditIsOpen(true);
+    }
+
+    function closeEditModal() {
+        setEditIsOpen(false);
+    }
+
     return (
         <div className="post-comment-info" key={comId}>
             <div className="comment-username">{comUsername}</div>
             <div className="comment-text">{comText}</div>
             <div className="comment-dropdown">{comId}</div>
             <div id={`comment_dropdown${comId}`} className="comment_dropdown">
-                <button id="editButton" className="comment_dropdown_edit">
+                <button id="editButton" className="comment_dropdown_edit" onClick={openEditModal}>
                     Edit
                 </button>
                 <button
@@ -89,6 +100,19 @@ function CommentSolo(props) {
                 </button>
             </div>
             {commentDropdownButton}
+            <Modal
+                isOpen={editIsOpen}
+                onRequestClose={closeEditModal}
+                ariaHideApp={false}
+                className="edit-modal"
+                overlayClassName="edit-modal__overlay"
+            >
+                <CommentEdit
+                    commentId={comId}
+                    commentText={comText}
+                    hideForm={() => setEditIsOpen(false)}
+                />
+            </Modal>
         </div>
     );
 }

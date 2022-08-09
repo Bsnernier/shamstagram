@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { editPost } from "../../store/post";
-import "./PostEditForm.css";
+import { editOneComment } from "../../store/comment";
+import "./CommentEdit.css";
 
-const PostEditForm = ({ post, hideForm }) => {
+const CommentEdit = (comment, hideForm) => {
     const dispatch = useDispatch();
-    const [description, setDescription] = useState("");
+    const [text, setText] = useState("");
 
     useEffect(() => {
-        setDescription(post?.description);
-    }, [post]);
+        setText(comment?.commentText);
+    }, [comment]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        post.description = description;
-        await dispatch(editPost(post));
-        hideForm();
+        await dispatch(editOneComment(comment.commentId, text));
+        comment.hideForm();
     };
 
-    const updateDescription = (e) => {
-        const description = e.target.value;
-        setDescription(description);
+    const updateText = (e) => {
+        const text = e.target.value;
+        setText(text);
     };
 
     return (
@@ -29,15 +28,15 @@ const PostEditForm = ({ post, hideForm }) => {
             <form onSubmit={handleSubmit} className="edit-post-form-container">
                 <input
                     className="edit-form-input"
-                    placeholder="Description"
+                    placeholder="Comment"
                     type="text"
-                    value={description}
-                    onChange={updateDescription}
+                    value={text}
+                    onChange={updateText}
                     maxLength="140"
                 />
                 <div className="edit-form-noninput">
                     <div className="charcounter_description">
-                        Characters Remaining : {140 - description.length}
+                        Characters Remaining : {140 - text.length}
                     </div>
                     <button className="post-button edit-submit-button" type="submit">
                         Submit
@@ -48,4 +47,4 @@ const PostEditForm = ({ post, hideForm }) => {
     );
 };
 
-export default PostEditForm;
+export default CommentEdit;
