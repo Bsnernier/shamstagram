@@ -1,35 +1,88 @@
+.edit-post-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-post-title {
+    border-bottom: 1px solid #dbdbdb;
+    font-size: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 493px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.edit-post-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 100px;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    width: 100%;
+}
+
+.edit-form-input {
+    font-family: "Fjalla One", sans-serif;
+    border-radius: 5px;
+    border-style: none;
+    border: 1px solid #dbdbdb;
+    /* box-shadow: 2px 2px 4px #c24150; */
+    margin: 5px;
+    padding: 95px;
+    width: 100%;
+}
+
 .edit-submit-button {
     position: relative;
-    word-wrap: break-word;
-    background-color: #dd9183;
-    box-shadow: 2px 2px 2px #c24150;
-    color: #0f2840;
-    border-style: none;
+    z-index: 3;
+    font-family: "BioRhyme", sans-serif;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #0095f6;
+    /* box-shadow: 1px 1px 1px #c24150; */
+    color: #fff;
+    width: 50%;
+    margin-top: 10px;
 }
 
 .edit-form-input {
     position: relative;
-    padding: 34px;
-    padding-right: 85px;
-    width: 450px;
+    margin: 5px;
+    padding: 95px;
+    width: 100%;
+    height: 150px;
     margin: auto;
-    left: 25px;
     box-sizing: border-box;
     background-color: white;
-    border: 1px groove #cc757c;
-    box-shadow: 3px 3px 3px #cc757c;
-    border-radius: 7px;
+    border: 1px solid #dbdbdb;
+    /* box-shadow: 3px 3px 3px #cc757c; */
     font-family: "Fjalla One", sans-serif;
     color: #4a374e;
-    bottom: 45px;
     word-wrap: break-word;
 }
 
 .charcounter_description {
     position: relative;
-    bottom: 70px;
-    left: 40px;
     opacity: 0.8;
     font-family: "IBM Plex Mono", sans-serif;
     font-size: small;
+}
+
+.edit-form-noninput {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }

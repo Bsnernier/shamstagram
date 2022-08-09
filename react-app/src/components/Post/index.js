@@ -20,6 +20,7 @@ function Post(propPostId) {
     const [liked, setLiked] = useState(false);
     const [likedId, setLikedId] = useState();
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [editIsOpen, setEditIsOpen] = useState(false);
 
     let { postId } = useParams();
 
@@ -80,6 +81,21 @@ function Post(propPostId) {
         setIsOpen(false);
     }
 
+    function openEditModal() {
+        setEditIsOpen(true);
+    }
+
+    function closeEditModal() {
+        setEditIsOpen(false);
+    }
+
+    function handleMultipleModals() {
+        if (modalIsOpen) {
+            setIsOpen(false);
+            setEditIsOpen(true);
+        }
+    }
+
     let likeHeart = <i class="fa-regular fa-heart fa-xl" onClick={likePost}></i>;
 
     if (liked) {
@@ -98,7 +114,7 @@ function Post(propPostId) {
         editButton = (
             <button
                 className="post-button post-modal-button edit-description-button"
-                onClick={() => setEditDisplay(true)}
+                onClick={handleMultipleModals}
             >
                 Edit{" "}
             </button>
@@ -149,6 +165,15 @@ function Post(propPostId) {
                     <div className="post-image__container">
                         <img className="post-image" src={imageUrl} alt={altText}></img>
                     </div>
+                    <Modal
+                        isOpen={editIsOpen}
+                        onRequestClose={closeEditModal}
+                        ariaHideApp={false}
+                        className="edit-modal"
+                        overlayClassName="edit-modal__overlay"
+                    >
+                        <PostEditForm post={post[postId]} hideForm={() => setEditIsOpen(false)} />
+                    </Modal>
 
                     <div className="post-description-container">
                         <div className="post-description-buttons">{likeHeart}</div>
