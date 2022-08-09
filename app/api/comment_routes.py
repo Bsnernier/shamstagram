@@ -54,15 +54,15 @@ def delete_comment(id):
 
     return {'Fail': "This is not your post"}
 
-# @post_routes.route('/<int:id>/edit', methods=["POST"])
-# @login_required
-# def edit_post(id):
-#     postId = request.form["postId"]
-#     description = request.form["description"]
-#     if len(description) <= 140:
-#         # post form should be modified to editForm
-#         post = Post.query.get(postId)
-#         post.description = description
-#         db.session.commit()
-#         return {'Success': 'Success!'}
-#     return {'failure':"It is over 140"}
+@comment_routes.route('/<int:id>/edit', methods=["POST"])
+@login_required
+def edit_comment(id):
+    commentId = request.form["commentId"]
+    text = request.form["text"]
+    if len(text) <= 140:
+        # post form should be modified to editForm
+        comment = Comment.query.get(commentId)
+        comment.text = text
+        db.session.commit()
+        return {'Success': 'Success!'}
+    return {'failure':"It is over 140"}
