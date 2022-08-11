@@ -5,6 +5,7 @@ import image from "./image";
 import post from "./post";
 import like from "./like";
 import comment from "./comment";
+import follow from "./follow";
 
 const rootReducer = combineReducers({
     session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     post,
     like,
     comment,
+    follow,
 });
 
 let enhancer;
