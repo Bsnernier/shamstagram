@@ -15,7 +15,7 @@ function Comment({ user, post }) {
 
     useEffect(() => {
         async function fetchData() {
-            let dispatchedComments = await dispatch(getAllComments(post.id));
+            let dispatchedComments = await dispatch(getAllComments(post?.id));
 
             Object.keys(dispatchedComments).forEach((key) => {
                 commentList.unshift(dispatchedComments[key]);

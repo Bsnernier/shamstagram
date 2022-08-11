@@ -75,6 +75,8 @@ function Post(propPostId) {
     }
 
     function follow(e) {
+        console.log("id", user.id);
+
         dispatch(followAUser(e.target.id));
     }
 
@@ -127,8 +129,9 @@ function Post(propPostId) {
     } else {
         editButton = (
             <button
+                id={post[postId]?.userId}
                 className="post-button post-modal-button edit-description-button"
-                onClick={() => setEditDisplay(true)}
+                onClick={follow}
             >
                 Follow{" "}
             </button>
@@ -149,9 +152,6 @@ function Post(propPostId) {
                 <div className="post-container">
                     <div className="post-username-container">
                         <div className="post-username-name">{username}</div>
-                        <button id={`${post[postId].userId}`} onClick={follow}>
-                            Follow
-                        </button>
                         <i class="fa-solid fa-ellipsis fa-xl post-username-modal" onClick={openModal}></i>
                         <Modal
                             isOpen={modalIsOpen}
