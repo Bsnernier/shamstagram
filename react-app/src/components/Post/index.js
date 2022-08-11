@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
 import { createLike, getOneLike, deleteOneLike } from "../../store/like";
+import { followAUser } from "../../store/follow";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import Comment from "../Comment";
@@ -71,6 +72,10 @@ function Post(propPostId) {
             setLiked(true);
             dispatch(createLike(user, postId));
         }
+    }
+
+    function follow(e) {
+        dispatch(followAUser(e.target.id));
     }
 
     function openModal() {
@@ -144,6 +149,9 @@ function Post(propPostId) {
                 <div className="post-container">
                     <div className="post-username-container">
                         <div className="post-username-name">{username}</div>
+                        <button id={`${post[postId].userId}`} onClick={follow}>
+                            Follow
+                        </button>
                         <i class="fa-solid fa-ellipsis fa-xl post-username-modal" onClick={openModal}></i>
                         <Modal
                             isOpen={modalIsOpen}
