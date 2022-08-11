@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
-import { createComment, getAllComments, deleteOneComment } from "../../store/comment";
+import { deleteOneComment } from "../../store/comment";
 import CommentEdit from "../CommentEdit";
 import "./CommentSolo.css";
 
@@ -68,14 +68,24 @@ function CommentSolo(props) {
 
     if (commentDropdownDisplay) {
         commentDropdownButton = (
-            <button id="comment_dropdown_button" onClick={() => toggleDropdown(comId)}>
-                button
-            </button>
+            // <button
+            //     id="comment_dropdown_button"
+            //     className="comment_dropdown_button"
+            //     onClick={() => toggleDropdown(comId)}
+            // >
+            //     button
+            // </button>
+            <i
+                id="comment_dropdown_button"
+                class="fa-solid fa-circle-chevron-down comment_dropdown_button"
+                onClick={() => toggleDropdown(comId)}
+            ></i>
         );
     }
 
-    function openEditModal() {
+    function openEditModal(id) {
         setEditIsOpen(true);
+        toggleDropdown(id);
     }
 
     function closeEditModal() {
@@ -86,9 +96,13 @@ function CommentSolo(props) {
         <div className="post-comment-info" key={comId}>
             <div className="comment-username">{comUsername}</div>
             <div className="comment-text">{comText}</div>
-            <div className="comment-dropdown">{comId}</div>
+            <div id="triangle"></div>
             <div id={`comment_dropdown${comId}`} className="comment_dropdown">
-                <button id="editButton" className="comment_dropdown_edit" onClick={openEditModal}>
+                <button
+                    id="editButton"
+                    className="comment_dropdown_edit"
+                    onClick={() => openEditModal(comId)}
+                >
                     Edit
                 </button>
                 <button

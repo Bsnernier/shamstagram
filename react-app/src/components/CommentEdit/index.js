@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { editOneComment } from "../../store/comment";
 import "./CommentEdit.css";
 
-const CommentEdit = (comment, hideForm) => {
+const CommentEdit = (comment) => {
     const dispatch = useDispatch();
     const [text, setText] = useState("");
 
