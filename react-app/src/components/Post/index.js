@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
 import { createLike, getOneLike, deleteOneLike } from "../../store/like";
-import { followAUser, checkAUser } from "../../store/follow";
+import { followAUser, checkAUser, unfollowAUser } from "../../store/follow";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import Comment from "../Comment";
@@ -83,8 +83,14 @@ function Post(propPostId) {
         dispatch(followAUser(e.target.id));
     }
 
+    function unfollow(e) {
+        dispatch(unfollowAUser(e.target.id));
+    }
+
     async function checkFollow(id) {
         const result = await dispatch(checkAUser(id));
+        console.log("result", result);
+
         if (result) {
             setCheckedFollow(true);
         } else {
@@ -144,7 +150,7 @@ function Post(propPostId) {
                 <button
                     id={post[postId]?.userId}
                     className="post-button post-modal-button edit-description-button"
-                    onClick={follow}
+                    onClick={unfollow}
                 >
                     Following{" "}
                 </button>
