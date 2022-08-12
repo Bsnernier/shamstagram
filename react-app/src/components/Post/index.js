@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
 import { createLike, getOneLike, deleteOneLike } from "../../store/like";
-import { followAUser } from "../../store/follow";
+import { followAUser, checkAUser } from "../../store/follow";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import Comment from "../Comment";
@@ -22,6 +22,7 @@ function Post(propPostId) {
     const [likedId, setLikedId] = useState();
     const [modalIsOpen, setIsOpen] = useState(false);
     const [editIsOpen, setEditIsOpen] = useState(false);
+    const [checkedFollow, setCheckedFollow] = useState(false);
 
     let { postId } = useParams();
 
@@ -64,6 +65,10 @@ function Post(propPostId) {
         }
     }, [user.id, post, postId, liked]);
 
+    useEffect(() => {
+        checkFollow(post[postId]?.userId);
+    }, [checkedFollow]);
+
     function likePost(e) {
         if (liked) {
             setLiked(false);
@@ -75,9 +80,16 @@ function Post(propPostId) {
     }
 
     function follow(e) {
-        console.log("id", user.id);
-
         dispatch(followAUser(e.target.id));
+    }
+
+    async function checkFollow(id) {
+        const result = await dispatch(checkAUser(id));
+        if (result) {
+            setCheckedFollow(true);
+        } else {
+            setCheckedFollow(false);
+        }
     }
 
     function openModal() {
@@ -103,10 +115,10 @@ function Post(propPostId) {
         }
     }
 
-    let likeHeart = <i class="fa-regular fa-heart fa-xl" onClick={likePost}></i>;
+    let likeHeart = <i className="fa-regular fa-heart fa-xl" onClick={likePost}></i>;
 
     if (liked) {
-        likeHeart = <i id={likedId} class="fa-solid fa-heart fa-xl" onClick={likePost}></i>;
+        likeHeart = <i id={likedId} className="fa-solid fa-heart fa-xl" onClick={likePost}></i>;
     }
 
     let editContent = null;
@@ -127,15 +139,27 @@ function Post(propPostId) {
             </button>
         );
     } else {
-        editButton = (
-            <button
-                id={post[postId]?.userId}
-                className="post-button post-modal-button edit-description-button"
-                onClick={follow}
-            >
-                Follow{" "}
-            </button>
-        );
+        if (checkedFollow) {
+            editButton = (
+                <button
+                    id={post[postId]?.userId}
+                    className="post-button post-modal-button edit-description-button"
+                    onClick={follow}
+                >
+                    Following{" "}
+                </button>
+            );
+        } else {
+            editButton = (
+                <button
+                    id={post[postId]?.userId}
+                    className="post-button post-modal-button edit-description-button"
+                    onClick={follow}
+                >
+                    Follow{" "}
+                </button>
+            );
+        }
     }
 
     let deleteContent = null;
@@ -152,7 +176,10 @@ function Post(propPostId) {
                 <div className="post-container">
                     <div className="post-username-container">
                         <div className="post-username-name">{username}</div>
-                        <i class="fa-solid fa-ellipsis fa-xl post-username-modal" onClick={openModal}></i>
+                        <i
+                            className="fa-solid fa-ellipsis fa-xl post-username-modal"
+                            onClick={openModal}
+                        ></i>
                         <Modal
                             isOpen={modalIsOpen}
                             onRequestClose={closeModal}

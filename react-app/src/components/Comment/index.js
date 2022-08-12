@@ -9,7 +9,6 @@ function Comment({ user, post }) {
     const dispatch = useDispatch();
     const [text, setText] = useState("");
     const [comments, setComments] = useState([...commentList]);
-    const [refresh, setRefresh] = useState(false);
 
     const test = useSelector((state) => state);
 
@@ -35,14 +34,13 @@ function Comment({ user, post }) {
         e.preventDefault();
         await dispatch(createComment(user, text, post));
         setText("");
-        setRefresh(true);
     };
 
     return (
         <div>
             <div className="post-comment-container">
                 {comments.map((comment) => (
-                    <CommentSolo user={user} post={post} comment={comment} />
+                    <CommentSolo user={user} post={post} comment={comment} key={comment.id} />
                 ))}
             </div>
             <form className="comment-form" onSubmit={handleSubmit}>

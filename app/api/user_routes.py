@@ -29,3 +29,19 @@ def follow_user(id):
         return user.to_dict()
     else:
         return {"error": "User cannot follow self"}
+
+@user_routes.route('/<int:id>/follow')
+@login_required
+def check_if_following_user(id):
+    user = User.query.get(id)
+    if current_user != user:
+        test = db.session.query(User).filter_by(id = id).all()
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", test)
+        test_result = test[0].followers
+        if not test_result:
+            return {'Unsuccessful': 'Not Following'}
+        for x in test_result:
+            if x.id == current_user.id:
+                return {'Success': current_user.id}
+    else:
+        return {"error": "User cannot follow self"}

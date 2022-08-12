@@ -77,7 +77,7 @@ function CommentSolo(props) {
             // </button>
             <i
                 id="comment_dropdown_button"
-                class="fa-solid fa-circle-chevron-down comment_dropdown_button"
+                className="fa-solid fa-circle-chevron-down comment_dropdown_button"
                 onClick={() => toggleDropdown(comId)}
             ></i>
         );
