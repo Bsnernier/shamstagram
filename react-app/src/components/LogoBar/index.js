@@ -62,22 +62,22 @@ const LogoBar = (ref) => {
             <ul className="nav_element">
                 <li className="link-container">
                     <NavLink to="/" exact={true} activeClassName="active">
-                        <i class="fa-solid fa-house fa-xl navbar-image"></i>
+                        <i className="fa-solid fa-house fa-xl navbar-image"></i>
                     </NavLink>
                 </li>
                 <li className="link-container">
                     {/* <NavLink to="/post" exact={true} activeClassName="active"> */}
-                    <i onClick={toggleModal} class="fa-regular fa-square-plus fa-xl navbar-image"></i>
+                    <i onClick={toggleModal} className="fa-regular fa-square-plus fa-xl navbar-image"></i>
                     {/* </NavLink> */}
                 </li>
                 <li className="link-container__profile">
                     <button onClick={toggleMenu} className="navbar-profile">
-                        <i id="drop1" class="fa-regular fa-user fa-xl navbar-image"></i>
+                        <i id="drop1" className="fa-regular fa-user fa-xl navbar-image"></i>
                     </button>
                     <div id="profile_dropdown" className="profile_dropdown">
                         {" "}
                         <div id="drop2" className="dropdown_button_div">
-                            <i id="drop3" class="fa-solid fa-circle-user fa-xl"></i>
+                            <i id="drop3" className="fa-solid fa-circle-user fa-xl"></i>
                             <button id="drop4" className="profile_dropdown__button">
                                 Profile
                             </button>

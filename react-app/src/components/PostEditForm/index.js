@@ -25,7 +25,7 @@ const PostEditForm = ({ post, hideForm }) => {
 
     return (
         <div className="edit-post-container">
-            <div class="edit-post-title">Edit description</div>
+            <div className="edit-post-title">Edit description</div>
             <form onSubmit={handleSubmit} className="edit-post-form-container">
                 <input
                     className="edit-form-input"
