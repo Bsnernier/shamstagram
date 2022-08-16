@@ -119,7 +119,8 @@ export default function reducer(state = initialState, action) {
             }
             break;
         case EDIT_COMMENT:
-            return action.payload;
+            let comment = action.payload;
+            return (state.comment = { comment });
         default:
             return state;
     }
