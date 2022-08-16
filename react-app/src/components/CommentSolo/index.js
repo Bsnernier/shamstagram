@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { deleteOneComment } from "../../store/comment";
 import CommentEdit from "../CommentEdit";
 import "./CommentSolo.css";
 
 function CommentSolo(props) {
     const dispatch = useDispatch();
-    const [currUserId, setCurrUserId] = useState(props.user.id);
-    const [comUserId, setComUserId] = useState(props.comment.userId);
-    const [comId, setComId] = useState(props.comment.id);
-    const [comUsername, setComUsername] = useState(props.comment.username);
-    const [comText, setComText] = useState(props.comment.text);
     const [commentDropdownDisplay, setCommentDropdownDisplay] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [editIsOpen, setEditIsOpen] = useState(false);
+
     let commentDropdownButton = null;
+
+    const currUserId = props.user.id;
+    const comUserId = props.comment.userId;
+    const comId = props.comment.id;
+    const comUsername = props.comment.username;
+    const comText = props.comment.text;
 
     useEffect(() => {
         if (currUserId === comUserId) {
@@ -68,13 +70,6 @@ function CommentSolo(props) {
 
     if (commentDropdownDisplay) {
         commentDropdownButton = (
-            // <button
-            //     id="comment_dropdown_button"
-            //     className="comment_dropdown_button"
-            //     onClick={() => toggleDropdown(comId)}
-            // >
-            //     button
-            // </button>
             <i
                 id="comment_dropdown_button"
                 className="fa-solid fa-circle-chevron-down comment_dropdown_button"

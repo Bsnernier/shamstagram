@@ -22,7 +22,7 @@ function Comment({ user, post }) {
             setComments(commentList);
         }
         fetchData();
-        test.comments = commentList;
+        test.comment = commentList;
     }, [dispatch, CommentSolo]);
 
     const updateText = (e) => {
