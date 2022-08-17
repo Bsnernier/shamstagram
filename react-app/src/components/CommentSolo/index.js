@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useDispatch, connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteOneComment } from "../../store/comment";
 import CommentEdit from "../CommentEdit";
 import "./CommentSolo.css";
@@ -18,6 +18,11 @@ function CommentSolo(props) {
     const comId = props.comment.id;
     const comUsername = props.comment.username;
     const comText = props.comment.text;
+
+    const test = useSelector((state) => state);
+
+    test.comment = { ...props.comment };
+    // console.log(test);
 
     useEffect(() => {
         if (currUserId === comUserId) {
