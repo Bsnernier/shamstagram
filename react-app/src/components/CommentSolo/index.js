@@ -22,7 +22,6 @@ function CommentSolo(props) {
     const test = useSelector((state) => state);
 
     test.comment = { ...props.comment };
-    // console.log(test);
 
     useEffect(() => {
         if (currUserId === comUserId) {
