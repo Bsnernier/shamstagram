@@ -49,8 +49,20 @@ export const createComment = (user, text, post) => async (dispatch) => {
     }
 };
 
-export const getAllComments = (postId) => async (dispatch) => {
+export const getCommentGroup = (postId) => async (dispatch) => {
     const res = await fetch(`/api/comments/${postId}`);
+
+    let comments;
+    if (res.ok) {
+        comments = await res.json();
+        dispatch(getComments(comments));
+    }
+
+    return comments;
+};
+
+export const getAllComments = () => async (dispatch) => {
+    const res = await fetch(`/api/comments/`);
 
     let comments;
     if (res.ok) {
@@ -109,7 +121,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_COMMENT:
-            return { comment: action.payload };
+            return (state = { ...state, comment: action.payload });
         case GET_COMMENTS:
             return action.comment;
         case DELETE_COMMENT:

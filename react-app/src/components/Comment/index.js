@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment, getAllComments } from "../../store/comment";
+import { createComment, getCommentGroup } from "../../store/comment";
 import CommentSolo from "../CommentSolo";
 import "./Comment.css";
 
@@ -14,7 +14,7 @@ function Comment({ user, post }) {
 
     useEffect(() => {
         async function fetchData() {
-            let dispatchedComments = await dispatch(getAllComments(post?.id));
+            let dispatchedComments = await dispatch(getCommentGroup(post?.id));
 
             Object.keys(dispatchedComments).forEach((key) => {
                 commentList.unshift(dispatchedComments[key]);
