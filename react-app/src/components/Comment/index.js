@@ -23,7 +23,7 @@ function Comment({ user, post }) {
         }
         fetchData();
         test.comment = commentList;
-    }, [dispatch, CommentSolo]);
+    }, [dispatch]);
 
     const updateText = (e) => {
         const currText = e.target.value;

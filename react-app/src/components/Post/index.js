@@ -89,7 +89,6 @@ function Post(propPostId) {
 
     async function checkFollow(id) {
         const result = await dispatch(checkAUser(id));
-        console.log("result", result);
 
         if (result) {
             setCheckedFollow(true);

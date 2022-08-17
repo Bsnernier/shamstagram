@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editOneComment } from "../../store/comment";
 import "./CommentEdit.css";
 
 const CommentEdit = (comment) => {
     const dispatch = useDispatch();
     const [text, setText] = useState("");
+    const test = useSelector((state) => state);
+    let comment2 = test.comment;
+
+    console.log(test);
 
     useEffect(() => {
-        setText(comment?.commentText);
-    }, [comment]);
+        setText(comment2?.text);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +23,7 @@ const CommentEdit = (comment) => {
 
     const updateText = (e) => {
         const text = e.target.value;
+        comment2.test = e.target.value;
         setText(text);
     };
 
