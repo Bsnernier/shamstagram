@@ -43,6 +43,15 @@ def get_all_comments(postId):
 
     return commentDict
 
+@comment_routes.route('/')
+@login_required
+def get_entire_comments():
+    comments = db.session.query(Comment).all()
+
+    commentDict = {comment.id: comment.to_dict() for comment in comments}
+
+    return commentDict
+
 @comment_routes.route('/<int:id>/delete', methods=["POST"])
 @login_required
 def delete_comment(id):
