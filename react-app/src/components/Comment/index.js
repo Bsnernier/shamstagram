@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment, getCommentGroup } from "../../store/comment";
+import { createComment, getCommentGroup, getAllComments } from "../../store/comment";
 import CommentSolo from "../CommentSolo";
 import "./Comment.css";
 
@@ -9,6 +9,7 @@ function Comment({ user, post }) {
     const dispatch = useDispatch();
     const [text, setText] = useState("");
     const [comments, setComments] = useState([...commentList]);
+    const [arrComments, setArrComments] = useState([...commentList]);
 
     const test = useSelector((state) => state);
 
@@ -16,14 +17,23 @@ function Comment({ user, post }) {
         async function fetchData() {
             let dispatchedComments = await dispatch(getCommentGroup(post?.id));
 
-            Object.keys(dispatchedComments).forEach((key) => {
-                commentList.unshift(dispatchedComments[key]);
-            });
-            setComments(commentList);
+            // Object.keys(dispatchedComments).forEach((key) => {
+            //     commentList.unshift(dispatchedComments[key]);
+            // });
+            // setComments(commentList);
+
+            setComments(dispatchedComments);
         }
         fetchData();
         test.comment = commentList;
     }, [dispatch]);
+
+    useEffect(() => {
+        Object.keys(comments).forEach((key) => {
+            commentList.unshift(comments[key]);
+        });
+        setArrComments(commentList);
+    }, [comments, text]);
 
     const updateText = (e) => {
         const currText = e.target.value;
@@ -34,12 +44,15 @@ function Comment({ user, post }) {
         e.preventDefault();
         await dispatch(createComment(user, text, post));
         setText("");
+        let testComments = await dispatch(getAllComments());
+
+        console.log("testComments", testComments);
     };
 
     return (
         <div>
             <div className="post-comment-container">
-                {comments.map((comment) => (
+                {arrComments.map((comment) => (
                     <CommentSolo user={user} post={post} comment={comment} key={comment.id} />
                 ))}
             </div>
