@@ -42,17 +42,17 @@ function Post(propPostId) {
         }
     }, [history, post, postId]);
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         dispatch(getOnePost(postId));
-    //         let res = await dispatch(getOneLike(user, postId));
-    //         if (res) {
-    //             setLikedId(res);
-    //             setLiked(true);
-    //         }
-    //     }
-    //     fetchData();
-    // }, [dispatch, postId, liked]);
+    useEffect(() => {
+        async function fetchData() {
+            dispatch(getOnePost(postId));
+            let res = await dispatch(getOneLike(user, postId));
+            if (res) {
+                setLikedId(res);
+                setLiked(true);
+            }
+        }
+        fetchData();
+    }, [dispatch, postId, liked]);
 
     useEffect(() => {
         setDescription(post[postId]?.description);
