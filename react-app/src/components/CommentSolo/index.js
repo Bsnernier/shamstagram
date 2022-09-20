@@ -19,9 +19,9 @@ function CommentSolo(props) {
     const comUsername = props.comment.username;
     const comText = props.comment.text;
 
-    const test = useSelector((state) => state);
+    // const test = useSelector((state) => state);
 
-    test.comment = { ...props.comment };
+    // test.comment = { ...props.comment };
 
     useEffect(() => {
         if (currUserId === comUserId) {

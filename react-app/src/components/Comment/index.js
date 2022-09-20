@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment, getCommentGroup, getAllComments } from "../../store/comment";
+import { createComment, getAllComments } from "../../store/comment";
 import CommentSolo from "../CommentSolo";
 import "./Comment.css";
 
@@ -11,29 +11,37 @@ function Comment({ user, post }) {
     const [comments, setComments] = useState([...commentList]);
     const [arrComments, setArrComments] = useState([...commentList]);
 
-    const test = useSelector((state) => state);
+    const [testState, setTestState] = useState("");
 
     useEffect(() => {
         async function fetchData() {
-            let dispatchedComments = await dispatch(getCommentGroup(post?.id));
+            let dispatchedComments = await dispatch(getAllComments());
 
             // Object.keys(dispatchedComments).forEach((key) => {
             //     commentList.unshift(dispatchedComments[key]);
             // });
             // setComments(commentList);
 
-            setComments(dispatchedComments);
+            setTestState(dispatchedComments);
         }
         fetchData();
         test.comment = commentList;
     }, [dispatch]);
 
+    const test = useSelector((state) => state);
+
     useEffect(() => {
+        console.log("test", test.comment);
+        setComments(test.comment);
+
         Object.keys(comments).forEach((key) => {
-            commentList.unshift(comments[key]);
+            if (comments[key].postId === post.id) {
+                commentList.unshift(comments[key]);
+            }
         });
+
         setArrComments(commentList);
-    }, [comments, text]);
+    }, [test]);
 
     const updateText = (e) => {
         const currText = e.target.value;
@@ -44,9 +52,7 @@ function Comment({ user, post }) {
         e.preventDefault();
         await dispatch(createComment(user, text, post));
         setText("");
-        let testComments = await dispatch(getAllComments());
-
-        console.log("testComments", testComments);
+        await dispatch(getAllComments());
     };
 
     return (
