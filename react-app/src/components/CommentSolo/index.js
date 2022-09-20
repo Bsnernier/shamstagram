@@ -77,6 +77,11 @@ function CommentSolo(props) {
         const deleteFullId = e.target.id;
         const deleteNumberId = deleteFullId.slice(12);
         dispatch(deleteOneComment(deleteNumberId));
+        setIsDropdownOpen(false);
+        const buttonDropdownClasses = document.querySelectorAll(".comment_dropdown");
+        buttonDropdownClasses.forEach((clas) => {
+            clas.classList.remove("active");
+        });
     }
 
     if (commentDropdownDisplay) {

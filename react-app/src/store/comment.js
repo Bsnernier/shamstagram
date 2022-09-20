@@ -13,9 +13,9 @@ const getComments = (comment) => ({
     comment,
 });
 
-const deleteComment = (comment) => ({
+const deleteComment = (commentId) => ({
     type: DELETE_COMMENT,
-    payload: comment,
+    payload: commentId,
 });
 
 const editComment = (comment) => ({
@@ -85,8 +85,10 @@ export const deleteOneComment = (commentId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        let comment = await res.json();
-        dispatch(deleteComment(comment));
+        let deleteRes = await res.json();
+        console.log("res", deleteRes.Success);
+
+        dispatch(deleteComment({ Success: deleteRes.Success }));
     }
 };
 
@@ -128,8 +130,12 @@ export default function reducer(state = {}, action) {
             return action.comment;
         case DELETE_COMMENT:
             if (action.payload["Success"]) {
-                delete action.payload["Success"];
-                return state;
+                let newState = { ...state };
+                // console.log("action.payload", newState[action.payload["Success"]]);
+
+                delete newState[action.payload];
+                delete newState[action.payload["Success"]];
+                return newState;
             }
             break;
         case EDIT_COMMENT:
