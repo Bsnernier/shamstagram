@@ -13,13 +13,20 @@ function CommentSolo(props) {
 
     let commentDropdownButton = null;
 
-    const currUserId = props.user.id;
-    const comUserId = props.comment.userId;
-    const comId = props.comment.id;
-    const comUsername = props.comment.username;
-    const comText = props.comment.text;
+    // const currUserId = props.user.id;
+    // const comUserId = props.comment.userId;
+    // const comId = props.comment.id;
+    // const comUsername = props.comment.username;
+    // const comText = props.comment.text;
 
-    // const test = useSelector((state) => state);
+    const test = useSelector((state) => state);
+    const currComment = test.comment[props.comment.id];
+
+    const currUserId = props.user.id;
+    const comUserId = currComment.userId;
+    const comId = props.comment.id;
+    const comUsername = currComment.username;
+    const comText = currComment.text;
 
     // test.comment = { ...props.comment };
 
