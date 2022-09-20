@@ -73,5 +73,5 @@ def edit_comment(id):
         comment = Comment.query.get(commentId)
         comment.text = text
         db.session.commit()
-        return {'Success': 'Success!'}
+        return {'Success': comment.to_dict()}
     return {'failure':"It is over 140"}

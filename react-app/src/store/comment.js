@@ -101,8 +101,10 @@ export const editOneComment = (commentId, text) => async (dispatch) => {
     });
 
     if (res.ok) {
-        await res.json();
-        dispatch(editComment(text));
+        let testRes = await res.json();
+        console.log("res.json", testRes.Success);
+
+        dispatch(editComment(testRes.Success));
         return null;
     } else if (res.status < 500) {
         const data = await res.json();
@@ -131,8 +133,7 @@ export default function reducer(state = {}, action) {
             }
             break;
         case EDIT_COMMENT:
-            let comment = action.payload;
-            return (state.comment = { comment });
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }
