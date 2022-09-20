@@ -69,7 +69,6 @@ def edit_comment(id):
     commentId = request.form["commentId"]
     text = request.form["text"]
     if len(text) <= 140:
-        # post form should be modified to editForm
         comment = Comment.query.get(commentId)
         comment.text = text
         db.session.commit()
