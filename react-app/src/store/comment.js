@@ -49,17 +49,17 @@ export const createComment = (user, text, post) => async (dispatch) => {
     }
 };
 
-export const getCommentGroup = (postId) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${postId}`);
+// export const getCommentGroup = (postId) => async (dispatch) => {
+//     const res = await fetch(`/api/comments/${postId}`);
 
-    let comments;
-    if (res.ok) {
-        comments = await res.json();
-        dispatch(getComments(comments));
-    }
+//     let comments;
+//     if (res.ok) {
+//         comments = await res.json();
+//         dispatch(getComments(comments));
+//     }
 
-    return comments;
-};
+//     return [comments];
+// };
 
 export const getAllComments = () => async (dispatch) => {
     const res = await fetch(`/api/comments/`);
@@ -70,7 +70,7 @@ export const getAllComments = () => async (dispatch) => {
         dispatch(getComments(comments));
     }
 
-    return comments;
+    return [comments];
 };
 
 export const deleteOneComment = (commentId) => async (dispatch) => {
@@ -114,14 +114,14 @@ export const editOneComment = (commentId, text) => async (dispatch) => {
     }
 };
 
-const initialState = {
-    comment: {},
-};
+// const initialState = {
+//     comment: {},
+// };
 
-export default function reducer(state = initialState, action) {
+export default function reducer(state = {}, action) {
     switch (action.type) {
         case ADD_COMMENT:
-            return (state = { ...state, comment: action.payload });
+            return { ...state, [action.payload.id]: action.payload };
         case GET_COMMENTS:
             return action.comment;
         case DELETE_COMMENT:
