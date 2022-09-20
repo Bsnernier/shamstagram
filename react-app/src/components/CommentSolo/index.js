@@ -23,10 +23,10 @@ function CommentSolo(props) {
     const currComment = test.comment[props.comment.id];
 
     const currUserId = props.user.id;
-    const comUserId = currComment.userId;
+    const comUserId = currComment?.userId;
     const comId = props.comment.id;
-    const comUsername = currComment.username;
-    const comText = currComment.text;
+    const comUsername = currComment?.username;
+    const comText = currComment?.text;
 
     // test.comment = { ...props.comment };
 

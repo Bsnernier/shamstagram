@@ -31,7 +31,6 @@ function Comment({ user, post }) {
     const test = useSelector((state) => state);
 
     useEffect(() => {
-        console.log("test", test.comment);
         setComments(test.comment);
 
         Object.keys(comments).forEach((key) => {
