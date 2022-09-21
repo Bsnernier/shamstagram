@@ -35,6 +35,15 @@ def get_one_like(userId, postId):
 
     return likeDict
 
+@like_routes.route('/<int:userId>')
+@login_required
+def get_all_like(userId):
+    likes = db.session.query(Like).all()
+
+    likeDict = {like.id: like.to_dict() for like in likes}
+
+    return likeDict
+
 @like_routes.route('/<int:id>/delete', methods=["POST"])
 @login_required
 def delete_one_like(id):

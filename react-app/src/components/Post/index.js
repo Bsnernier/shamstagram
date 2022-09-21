@@ -43,16 +43,8 @@ function Post(propPostId) {
     }, [history, post, postId]);
 
     useEffect(() => {
-        async function fetchData() {
-            dispatch(getOnePost(postId));
-            let res = await dispatch(getOneLike(user, postId));
-            if (res) {
-                setLikedId(res);
-                setLiked(true);
-            }
-        }
-        fetchData();
-    }, [dispatch, postId, liked]);
+        dispatch(getOnePost(postId));
+    }, [dispatch, postId]);
 
     useEffect(() => {
         setDescription(post[postId]?.description);
@@ -69,13 +61,32 @@ function Post(propPostId) {
         checkFollow(post[postId]?.userId);
     }, [checkedFollow]);
 
-    function likePost(e) {
+    useEffect(() => {
+        async function fetchData() {
+            let res = await dispatch(getOneLike(user, postId));
+            if (res) {
+                setLikedId(res);
+                setLiked(true);
+            }
+        }
+        fetchData();
+    }, [dispatch, liked, postId, user]);
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         let res = await dispatch(getEveryLike(user.id));
+    //         console.log("res", res);
+    //     }
+    //     fetchData();
+    // }, []);
+
+    async function likePost(e) {
         if (liked) {
+            await dispatch(deleteOneLike(e.target.id));
             setLiked(false);
-            dispatch(deleteOneLike(e.target.id));
         } else {
+            await dispatch(createLike(user, postId));
             setLiked(true);
-            dispatch(createLike(user, postId));
         }
     }
 
@@ -115,8 +126,8 @@ function Post(propPostId) {
 
     function handleMultipleModals() {
         if (modalIsOpen) {
-            setIsOpen(false);
-            setEditIsOpen(true);
+            openModal();
+            openEditModal();
         }
     }
 
