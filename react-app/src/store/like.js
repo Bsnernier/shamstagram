@@ -1,5 +1,6 @@
 const ADD_LIKE = "likes/ADD_LIKE";
 const GET_LIKE = "likes/GET_LIKE";
+const GET_ALL_LIKE = "likes/GET_ALL_LIKE";
 const DELETE_LIKE = "likes/DELETE_LIKE";
 
 const addLike = (like) => ({
@@ -9,6 +10,11 @@ const addLike = (like) => ({
 
 const getLike = (liked) => ({
     type: GET_LIKE,
+    payload: liked,
+});
+
+const getAllLike = (liked) => ({
+    type: GET_ALL_LIKE,
     payload: liked,
 });
 
@@ -54,6 +60,17 @@ export const getOneLike = (user, postId) => async (dispatch) => {
     }
 };
 
+export const getEveryLike = (userId) => async (dispatch) => {
+    const res = await fetch(`api/likes/${userId}`);
+
+    if (res.ok) {
+        let likes = await res.json();
+
+        dispatch(getAllLike(likes));
+        return likes;
+    }
+};
+
 export const deleteOneLike = (id) => async (dispatch) => {
     const res = await fetch(`api/likes/${id}/delete`, {
         method: "POST",
@@ -71,15 +88,13 @@ export const deleteOneLike = (id) => async (dispatch) => {
     }
 };
 
-const initialState = {
-    post: {},
-};
-
-export default function reducer(state = initialState, action) {
+export default function reducer(state = {}, action) {
     switch (action.type) {
         case ADD_LIKE:
             return action.payload;
         case GET_LIKE:
+            return action.payload;
+        case GET_ALL_LIKE:
             return action.payload;
         case DELETE_LIKE:
             if (action.payload["Success"]) {
