@@ -209,3 +209,7 @@ a:visited {
 .create-post-modal:focus {
     outline: none;
 }
+
+.fa-square-plus:hover {
+    cursor: pointer;
+}
