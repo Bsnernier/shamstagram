@@ -66,9 +66,7 @@ const LogoBar = (ref) => {
                     </NavLink>
                 </li>
                 <li className="link-container">
-                    {/* <NavLink to="/post" exact={true} activeClassName="active"> */}
                     <i onClick={toggleModal} className="fa-regular fa-square-plus fa-xl navbar-image"></i>
-                    {/* </NavLink> */}
                 </li>
                 <li className="link-container__profile">
                     <button onClick={toggleMenu} className="navbar-profile">
@@ -76,12 +74,14 @@ const LogoBar = (ref) => {
                     </button>
                     <div id="profile_dropdown" className="profile_dropdown">
                         {" "}
-                        <div id="drop2" className="dropdown_button_div">
-                            <i id="drop3" className="fa-solid fa-circle-user fa-xl"></i>
-                            <button id="drop4" className="profile_dropdown__button">
-                                Profile
-                            </button>
-                        </div>
+                        <NavLink to="/profile" exact={true} activeClassName="active" onClick={toggleMenu}>
+                            <div id="drop2" className="dropdown_button_div">
+                                <i id="drop3" className="fa-solid fa-circle-user fa-xl"></i>
+                                <button id="drop4" className="profile_dropdown__button">
+                                    Profile
+                                </button>
+                            </div>
+                        </NavLink>
                         <LogoutButton />
                     </div>
                 </li>
