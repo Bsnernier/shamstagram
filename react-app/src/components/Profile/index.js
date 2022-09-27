@@ -12,9 +12,12 @@ function Profile() {
     }, [dispatch]);
 
     const posts = useSelector((state) => state.post);
+    const userId = useSelector((state) => state.session.user.id);
 
     for (let key in posts) {
-        if (key !== "post") {
+        let postUserId = posts[key].userId;
+
+        if (key !== "post" && postUserId === userId) {
             list.push(key);
         }
     }
