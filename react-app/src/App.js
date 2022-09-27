@@ -8,6 +8,7 @@ import LogoBar from "./components/LogoBar";
 import Image from "./components/Image";
 import Post from "./components/Post";
 import PostFeed from "./components/PostFeed";
+import Profile from "./components/Profile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -53,6 +54,9 @@ function App() {
                     </ProtectedRoute>
                     <ProtectedRoute path="/users/:userId" exact={true}>
                         <User />
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/profile" exact={true}>
+                        <Profile />
                     </ProtectedRoute>
                     <ProtectedRoute path="/" exact={true}>
                         <PostFeed />
